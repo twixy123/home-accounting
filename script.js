@@ -156,7 +156,7 @@ const add = (e) => {
             comment: formCommentInput.value ? formCommentInput.value : ''
         }
 
-        dataBase.push(operationData)
+        dataBase.unshift(operationData)
         init()
 
         formNameInput.value = ''
