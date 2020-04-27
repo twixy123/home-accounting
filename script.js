@@ -23,6 +23,7 @@ let dataBase = [
     // }
 ]
 
+// функция для отпрвки данных - встречается в init
 const postData = () => {
     const headers = {
         'Content-Type': 'application/json'
@@ -34,9 +35,10 @@ const postData = () => {
     })
 }
 
+//функция для принятия данных - встречается в init
 const getData = () => fetch('data.json').then(response => response.text())
 
-
+// функция для обработки суммы - 1000000 -> 1 000 000
 const separate = (str) => {
     let out;
 
@@ -52,11 +54,13 @@ const separate = (str) => {
     }
 }
 
+//обратная функция separate - 1 000 000 -> 1000000
 const unit = (str) => {
     const out = str.split(' ')
     return +out.join('')
 }
 
+//Функция верстки истории
 const renderList = (obj) => {
     const li = document.createElement('li')
     const className = obj.type === 'Доход' ? 'history-income' : 'history-expend'
@@ -76,6 +80,7 @@ const renderList = (obj) => {
     historyListMenu.append(li)
 }
 
+// функция для подсчета баланса
 const result = (obj) => {
     const income = obj
         .filter(item => item.type === 'Доход')
@@ -92,6 +97,7 @@ const result = (obj) => {
 
 }
 
+// Функция для правильности вывода даты
 const correctDate = (date) => {
     const newDate = new Date(date),
         day = newDate.getDate() < 10 ? '0' + newDate.getDate() : newDate.getDate(),
@@ -101,6 +107,7 @@ const correctDate = (date) => {
     return `${day}.${month}.${year}`
 }
 
+// Функция для оглавления строки - первая буква заглавная
 const correctName = (str) => {
     let correctNameStr = str[0].toString().toUpperCase()
 
@@ -112,6 +119,7 @@ const correctName = (str) => {
     return correctNameStr
 }
 
+// Инициализация всего проекта (принятия данных из json, отправка, создание объекта, подсчет баланса)
 const init = () => {
     historyListMenu.textContent = ''
 
@@ -131,12 +139,14 @@ const init = () => {
 
 }
 
+// Удаление всей истории операций
 const removeHistory = () => {
     dataBase = dataBase.filter(el => el.data === 1)
     init()
     question.style.display = 'none'
 }
 
+// обработка инпутов создание через них объекта
 const add = (e) => {
     e.preventDefault()
 
@@ -171,6 +181,7 @@ const add = (e) => {
     }
 }
 
+// удаление одной истории
 const deleteList = (event) => {
     if (event.target.classList.contains('history-del')) {
 
@@ -186,14 +197,16 @@ const deleteList = (event) => {
 init()
 
 
-form.addEventListener('submit', add)
+form.addEventListener('submit', add) // сработате при отправке формы
 
-historyListMenu.addEventListener('click', deleteList)
+historyListMenu.addEventListener('click', deleteList) // сработает при нажатии крестика на операции
 
+// сработает при нажатии на конпку в паровм углу экрана
 remove.addEventListener('click', (e) => {
     e.preventDefault()
     question.style.display = 'block'
 })
 
+// подтверждение на удаление всей истории
 yes.addEventListener('click', removeHistory)
 no.addEventListener('click', () => question.style.display = 'none')
