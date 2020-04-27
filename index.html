@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Accounting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a href="" id="remove">&#8634;</a>
+
+    <header>
+        <div class="container">
+
+            <div class="balance-block">
+
+                <div class="total-balance">
+                    <p class="total-balance__balance">Баланс</p>
+                    <p class="total-balance__amount">0 Сум</p>
+                </div>
+
+                <div class="total-operations">
+
+                    <div class="total-income">
+                        <p class="total-income__balance">Доход &#11014;</p>
+                        <p class="total-income__amount">0</p>
+                    </div>
+
+                    <div class="total-expend">
+                        <p class="total-expend__balance">Расход &#11015;</p>
+                        <p class="total-expend__amount">0</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <form action="" id="form">
+                <div class="form">
+                    <div class="operation-block operation-type">
+
+                        <p class="form__type-text">Тип</p>
+
+                        <select name="operator" id="operator" class="form__type-select">
+                            <option value="Доход" data-income="+">Доход</option>
+                            <option value="Расход" data-expend="-">Расход</option>
+                        </select>
+
+                    </div>
+
+                    <div class="operation-block operation-name">
+
+                        <p class="form__name-text">Категория</p>
+
+                        <input type="text" placeholder="Введите категорию" class="form__name-input" maxlength="30">
+
+                    </div>
+
+                    <div class="operation-block operation-date">
+
+                        <p class="form__date-text">Дата</p>
+
+                        <input type="date" class="form__date-input">
+
+                    </div>
+
+                    <div class="operation-block operation-amount">
+
+                        <p class="form__amount-text">Сумма</p>
+
+                        <input type="text" placeholder="Введите сумму" class="form__amount-input">
+
+                    </div>
+
+                    <div class="operation-block operation-comment">
+
+                        <p class="form__comment-text">Комментарий</p>
+
+                        <textarea name="comment" id="" cols="25" rows="3"
+                            placeholder="Напишите комментарий (не обязательно) ..." maxlength="60"
+                            class="form__comment-input"></textarea>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn">Добавить операцию</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+
+        <div class="container">
+            <p class="history-text">История расходов / доходов</p>
+
+            <ul class="history-list_menu"></ul>
+
+        </div>
+
+    </footer>
+
+    <div class="question">
+        <div class="question-content">
+            <p>Вы уверены что хотите очистить всю историю?</p>
+            <button type="button" id="yes">Да</button>
+            <button type="button" id="no">Нет</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
