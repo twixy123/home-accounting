@@ -123,27 +123,24 @@ const correctName = (str) => {
 const init = () => {
     historyListMenu.textContent = ''
 
-    postData().then(() => {
-        getData()
-            .then(data => dataBase = JSON.parse(data))
-            .then(data => {
-                data.forEach(item => renderList(item))
-                result(data)
-            })
-            .catch(e => {
-                e.data = new Error('Что то пошло не так')
-                throw e
-            })
-    })
-
-
+    getData()
+        .then(data => dataBase = JSON.parse(data))
+        .then(data => {
+            data.forEach(item => renderList(item))
+            result(data)
+        })
+        .catch(e => {
+            e.data = new Error('Что то пошло не так')
+            throw e
+        })
 }
 
 // Удаление всей истории операций
 const removeHistory = () => {
     dataBase = dataBase.filter(el => el.data === 1)
-    init()
-    question.style.display = 'none'
+    postData()
+        .then(() => init())
+        .then(() => question.style.display = 'none')
 }
 
 // обработка инпутов создание через них объекта
@@ -167,7 +164,7 @@ const add = (e) => {
         }
 
         dataBase.unshift(operationData)
-        init()
+        postData().then(() => init())
 
         formNameInput.value = ''
         formTypeSelect.value = 'Доход'
@@ -190,7 +187,7 @@ const deleteList = (event) => {
 
         dataBase = dataBase.filter(el => el.id.toString() !== id.toString())
 
-        init()
+        postData().then(() => init())
     }
 }
 
